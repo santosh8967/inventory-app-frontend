@@ -1,0 +1,15 @@
+/* Styles for ShoeList component */
+.shoe-list-container {
+  margin: 20px;
+}
+
+.shoe-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+}
+
+.shoe-card:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+

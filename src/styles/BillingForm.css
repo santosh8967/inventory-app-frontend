@@ -1,0 +1,25 @@
+.billing-form-container {
+  margin: 20px;
+}
+
+.billing-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.billing-form input {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.billing-form button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.billing-form button:hover {
+  background-color: #45a049;
+}

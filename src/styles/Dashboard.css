@@ -1,0 +1,20 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.dashboard-container {
+  @apply m-5; /* Equivalent to margin: 20px; */
+}
+
+.dashboard-title {
+  @apply text-3xl mb-5; /* Equivalent to font-size: 24px; margin-bottom: 10px; */
+}
+
+.chart-container {
+  @apply bg-gray-100 p-10 rounded-lg shadow-md; /* Equivalent styles with Tailwind */
+}
+
+/* Additional styles for chart (you can customize this further based on your chart library) */
+.chart {
+  @apply w-full max-w-screen-md mx-auto h-96; /* Equivalent styles with Tailwind */
+}

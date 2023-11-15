@@ -1,0 +1,26 @@
+/* Styles for ShoeForm component */
+.shoe-form-container {
+  margin: 20px;
+}
+
+.shoe-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.shoe-form input {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.shoe-form button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.shoe-form button:hover {
+  background-color: #45a049;
+}
