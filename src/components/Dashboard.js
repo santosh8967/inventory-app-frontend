@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
+import React, { useEffect, useRef } from 'react';
+import Chart from 'chart.js/auto';
 
 const Dashboard = () => {
-  const [chartData, setChartData] = useState({});
+  const chartRef = useRef(null);
 
   useEffect(() => {
-    // Sample data for the chart
     const data = {
       labels: ['January', 'February', 'March', 'April', 'May'],
       datasets: [
@@ -18,33 +17,54 @@ const Dashboard = () => {
       ],
     };
 
-    setChartData(data);
-  }, []);
-
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      x: {
-        grid: {
-          display: false,
+    const options = {
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top',
         },
       },
-      y: {
-        beginAtZero: true,
-        max: 100,
+      scales: {
+        x: {
+          type: 'category',
+          grid: {
+            display: false,
+          },
+        },
+        y: {
+          beginAtZero: true,
+          max: 100,
+        },
       },
-    },
-  };
+    };
+
+    const ctx = chartRef.current;
+
+    if (ctx) {
+      // Check if the chart instance exists
+      if (ctx.chart) {
+        // Destroy the existing chart
+        ctx.chart.destroy();
+      }
+
+      // Create a new chart
+      ctx.chart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options,
+      });
+    }
+  }, []);
 
   return (
     <div className="dashboard-container">
       <h1 className="dashboard-title">Dashboard</h1>
       <div className="chart-container">
-        <Bar data={chartData} options={options} className="chart" />
+        <canvas ref={chartRef} width="400" height="200"></canvas>
       </div>
     </div>
   );
 };
 
 export default Dashboard;
+

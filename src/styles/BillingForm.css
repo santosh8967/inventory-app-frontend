@@ -1,4 +1,4 @@
-.billing-form-container {
+/* .billing-form-container {
   margin: 20px;
 }
 
@@ -22,4 +22,36 @@
 
 .billing-form button:hover {
   background-color: #45a049;
+} */
+/* Styles for LoginForm component */
+.login-form-container {
+  margin: 20px;
+}
+
+.login-form {
+  max-width: 300px;
+  margin: auto;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.login-form button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.login-form button:hover {
+  opacity: 0.8;
 }

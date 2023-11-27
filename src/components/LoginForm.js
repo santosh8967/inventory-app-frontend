@@ -1,17 +1,36 @@
-import React, { useState } from 'react';
+ import React, { useState } from 'react';
+import axios from 'axios';
+import { useAuth } from '../context/AuthContext';
 
 const LoginForm = () => {
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Handle form submission (e.g., make an API request for authentication)
-    // Typically, you'd use a state management library or context to handle user authentication.
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/login`,
+        { email, password },
+        { headers: { 'Content-Type': 'application/json' } } // Specify content type
+      );
 
-    console.log('Email:', email);
-    console.log('Password:', password);
+      const userData = response.data;
+      login(userData);
+      console.log('Login successful:', response.data);
+    } catch (error) {
+      console.error('Login failed:', error.message);
+
+      // Check if the error response has a status code
+      if (error.response && error.response.status === 401) {
+        setError('Login failed. Please check your credentials and try again.');
+      } else {
+        setError('An unexpected error occurred. Please try again later.');
+      }
+    }
   };
 
   return (
@@ -37,6 +56,8 @@ const LoginForm = () => {
         />
 
         <button type="submit">Login</button>
+
+        {error && <p className="error-message">{error}</p>}
       </form>
     </div>
   );
