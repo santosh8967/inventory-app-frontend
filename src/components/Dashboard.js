@@ -1,42 +1,69 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import ShoeList from './components/ShoeList';
-import ShoeForm from './components/ShoeForm';
-import BillingForm from './components/BillingForm';
-import Dashboard from './components/Dashboard';
-import LoginForm from './components/LoginForm';
-import { useAuth } from './context/AuthContext';
-import './styles/BillingForm.css?v1'; // Import billingform.css
-import './styles/Dashboard.css?v1'; // Import dashboard.css
-import './styles/LoginForm.css'; // Import loginform.css
-import './styles/ShoeForm.css?v1'; // Import shoeform.css
-import './styles/ShoeList.css?v1'; // Import shoelist.css
+import React, { useEffect, useRef } from 'react';
+import Chart from 'chart.js/auto';
 
-function App() {
-  const { user } = useAuth();
+const Dashboard = () => {
+  const chartRef = useRef(null);
+
+  useEffect(() => {
+    const data = {
+      labels: ['January', 'February', 'March', 'April', 'May'],
+      datasets: [
+        {
+          label: 'Sales',
+          data: [65, 59, 80, 81, 56],
+          backgroundColor: 'rgba(75, 192, 192, 0.6)',
+          borderWidth: 1,
+        },
+      ],
+    };
+
+    const options = {
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top',
+        },
+      },
+      scales: {
+        x: {
+          type: 'category',
+          grid: {
+            display: false,
+          },
+        },
+        y: {
+          beginAtZero: true,
+          max: 100,
+        },
+      },
+    };
+
+    const ctx = chartRef.current;
+
+    if (ctx) {
+      // Check if the chart instance exists
+      if (ctx.chart) {
+        // Destroy the existing chart
+        ctx.chart.destroy();
+      }
+
+      // Create a new chart
+      ctx.chart = new Chart(ctx, {
+        type: 'bar',
+        data: data,
+        options: options,
+      });
+    }
+  }, []);
 
   return (
-    <Router>
-      <div>
-        <Routes>
-          <Route
-            path="/dashboard"
-            element={user ? <Dashboard /> : <Navigate to="/" />}
-          />
-          <Route path="/shoes" element={user ? <ShoeList /> : <Navigate to="/" />} />
-          <Route path="/add" element={user ? <ShoeForm /> : <Navigate to="/" />} />
-          <Route
-            path="/billing"
-            element={user ? <BillingForm /> : <Navigate to="/" />}
-          />
-          <Route
-            path="/"
-            element={user ? <Navigate to="/dashboard" /> : <LoginForm />}
-          />
-        </Routes>
+    <div className="dashboard-container">
+      <h1 className="dashboard-title">Dashboard</h1>
+      <div className="chart-container">
+        <canvas ref={chartRef} width="400" height="200"></canvas>
       </div>
-    </Router>
+    </div>
   );
-}
+};
 
-export default App;
+export default Dashboard;
