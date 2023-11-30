@@ -1,4 +1,5 @@
- import React, { useState } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
@@ -15,7 +16,7 @@ const LoginForm = () => {
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/api/login`,
         { email, password },
-        { headers: { 'Content-Type': 'application/json' } } // Specify content type
+        { headers: { 'Content-Type': 'application/json' } }
       );
 
       const userData = response.data;
@@ -24,7 +25,6 @@ const LoginForm = () => {
     } catch (error) {
       console.error('Login failed:', error.message);
 
-      // Check if the error response has a status code
       if (error.response && error.response.status === 401) {
         setError('Login failed. Please check your credentials and try again.');
       } else {
@@ -58,6 +58,11 @@ const LoginForm = () => {
         <button type="submit">Login</button>
 
         {error && <p className="error-message">{error}</p>}
+
+        {/* New registration link */}
+        <p>
+          Don't have an account? <Link to="/register">Register here</Link>.
+        </p>
       </form>
     </div>
   );
