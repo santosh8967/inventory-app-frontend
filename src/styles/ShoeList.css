@@ -1,5 +1,5 @@
 /* Styles for ShoeList component */
-.shoe-list-container {
+/* .shoe-list-container {
   margin: 20px;
 }
 
@@ -11,5 +11,12 @@
 
 .shoe-card:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+} */
+.shoe-list-container {
+  @apply m-4;
+}
+
+.shoe-card {
+  @apply border border-gray-300 rounded-lg shadow-md p-4 m-4 hover:shadow-xl;
 }
 

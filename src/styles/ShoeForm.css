@@ -1,4 +1,4 @@
-/* Styles for ShoeForm component */
+/* Styles for ShoeForm component
 .shoe-form-container {
   margin: 20px;
 }
@@ -23,4 +23,19 @@
 
 .shoe-form button:hover {
   background-color: #45a049;
+} */
+.shoe-form-container {
+  @apply m-4;
+}
+
+.shoe-form {
+  @apply flex flex-col;
+}
+
+.shoe-form input {
+  @apply mb-4 p-2 border border-gray-300 rounded-md;
+}
+
+.shoe-form button {
+  @apply px-4 py-2 bg-green-500 text-white font-bold rounded-md shadow-md hover:bg-green-600;
 }

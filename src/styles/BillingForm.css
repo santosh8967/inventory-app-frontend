@@ -1,57 +1,34 @@
-/* .billing-form-container {
-  margin: 20px;
+/* Billing Form Styles */
+.billing-form-container {
+  @apply my-10 mx-auto px-4;
 }
 
 .billing-form {
-  display: flex;
-  flex-direction: column;
+  @apply flex flex-col gap-y-4;
 }
 
 .billing-form input {
-  margin-bottom: 10px;
-  padding: 5px;
+  @apply rounded-md border-gray-300 shadow-sm px-4 py-2;
 }
 
 .billing-form button {
-  padding: 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
+  @apply rounded-md bg-green-500 text-white px-4 py-2 font-bold shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500;
 }
 
-.billing-form button:hover {
-  background-color: #45a049;
-} */
-/* Styles for LoginForm component */
-.login-form-container {
-  margin: 20px;
+/* Specific styling for individual inputs */
+
+.billing-form input[type="text"] {
+  @apply w-full;
 }
 
-.login-form {
-  max-width: 300px;
-  margin: auto;
+.billing-form input[type="email"] {
+  @apply w-full;
 }
 
-.login-form input {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+.billing-form input[type="number"] {
+  @apply w-full;
 }
 
-.login-form button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-.login-form button:hover {
-  opacity: 0.8;
+.billing-form textarea {
+  @apply rounded-md border-gray-300 shadow-sm px-4 py-2 w-full resize-none;
 }
